@@ -1,0 +1,66 @@
+---
+title: "map_and_tilde"
+author: "Patrick R. Wright"
+date: "10/14/2020"
+output: md_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Using the map function with tilde (~) notations
+
+In part inspired by (this)[https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229].
+
+```{r libs}
+# %>%
+library(magrittr)
+# map
+library(purrr)
+```
+
+Map will apply a given function on each element of the input. The dot (.) indicated the object passed through by the pipe. In this case first the complete iris dataset and then a list of three data frames. One for each species in the iris dataset.
+
+```{r split}
+# split iris into a list by the different species and get the means for Sepal.Length and Sepal.Width
+iris %>%
+  split(.$Species) %>%
+  map(~ c(mean(.$Sepal.Length),
+          mean(.$Sepal.Width)))
+```
+
+The **tilde (~)** statement in the **map** call is equivalent to the following individual function and can thus replace the overhead of predefining a function.
+
+```{r function}
+means_sepal_iris <- function(data) {
+    return(c(mean(data$Sepal.Length),
+             mean(data$Sepal.Width)))
+}
+```
+
+```{r map}
+iris %>%
+  split(.$Species) %>%
+  map(means_sepal_iris)
+```
+
+```{r map2}
+iris %>%
+  split(.$Species) %>%
+  map(function(.) { return(c(mean(.$Sepal.Length),
+                             mean(.$Sepal.Width)))}
+     )
+```
+
+```{r checks}
+# Some sanity checks
+mean(iris$Sepal.Length[which(iris$Species == "setosa")]) == 5.006
+mean(iris$Sepal.Length[which(iris$Species == "versicolor")]) == 5.936
+mean(iris$Sepal.Width[which(iris$Species == "virginica")]) == 2.974
+```
+
+```{r sessionInfo}
+sessionInfo()
+```
+
