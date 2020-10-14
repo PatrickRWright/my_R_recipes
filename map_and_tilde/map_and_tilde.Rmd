@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Using the map function with tilde (~) notations
 
-In part inspired by (this)[https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229].
+In part inspired by [this](https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229).
 
 ```{r libs}
 # %>%

@@ -2,7 +2,7 @@ Using the map function with tilde (~) notations
 -----------------------------------------------
 
 In part inspired by
-(this)\[<a href="https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229" class="uri">https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229</a>\].
+[this](https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229).
 
     # %>%
     library(magrittr)
