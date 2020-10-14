@@ -1,15 +1,15 @@
-Using the map function with tilde (\~) notations
-------------------------------------------------
+Using the map function with tilde (~) notations {#using-the-map-function-with-tilde-notations}
+-----------------------------------------------
 
 In part inspired by
 [this](https://towardsdatascience.com/functional-programming-in-r-with-purrr-469e597d0229).
 
-``` r
+~~~~ r
 # %>%
 library(magrittr)
 # map
 library(purrr)
-```
+~~~~
 
     ## 
     ## Attaching package: 'purrr'
@@ -23,13 +23,13 @@ Map will apply a given function on each element of the input. The dot
 the complete iris dataset and then a list of three data frames. One for
 each species in the iris dataset.
 
-``` r
+~~~~ r
 # split iris into a list by the different species and get the means for Sepal.Length and Sepal.Width
 iris %>%
   split(.$Species) %>%
   map(~ c(mean(.$Sepal.Length),
           mean(.$Sepal.Width)))
-```
+~~~~
 
     ## $setosa
     ## [1] 5.006 3.428
@@ -40,22 +40,22 @@ iris %>%
     ## $virginica
     ## [1] 6.588 2.974
 
-The **tilde (\~)** statement in the **map** call is equivalent to the
+The **tilde (~)** statement in the **map** call is equivalent to the
 following individual function and can thus replace the overhead of
 predefining a function.
 
-``` r
+~~~~ r
 means_sepal_iris <- function(data) {
     return(c(mean(data$Sepal.Length),
              mean(data$Sepal.Width)))
 }
-```
+~~~~
 
-``` r
+~~~~ r
 iris %>%
   split(.$Species) %>%
   map(means_sepal_iris)
-```
+~~~~
 
     ## $setosa
     ## [1] 5.006 3.428
@@ -66,13 +66,13 @@ iris %>%
     ## $virginica
     ## [1] 6.588 2.974
 
-``` r
+~~~~ r
 iris %>%
   split(.$Species) %>%
   map(function(.) { return(c(mean(.$Sepal.Length),
                              mean(.$Sepal.Width)))}
      )
-```
+~~~~
 
     ## $setosa
     ## [1] 5.006 3.428
@@ -83,28 +83,28 @@ iris %>%
     ## $virginica
     ## [1] 6.588 2.974
 
-``` r
+~~~~ r
 # Some sanity checks
 mean(iris$Sepal.Length[which(iris$Species == "setosa")]) == 5.006
-```
+~~~~
 
     ## [1] TRUE
 
-``` r
+~~~~ r
 mean(iris$Sepal.Length[which(iris$Species == "versicolor")]) == 5.936
-```
+~~~~
 
     ## [1] TRUE
 
-``` r
+~~~~ r
 mean(iris$Sepal.Width[which(iris$Species == "virginica")]) == 2.974
-```
+~~~~
 
     ## [1] TRUE
 
-``` r
+~~~~ r
 sessionInfo()
-```
+~~~~
 
     ## R version 3.6.3 (2020-02-29)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
