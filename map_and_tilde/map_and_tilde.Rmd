@@ -4,7 +4,7 @@ author: "Patrick R. Wright"
 date: "10/14/2020"
 output: 
   md_document:
-    variant: markdown_phpextra
+    variant: markdown_github
 ---
 
 ```{r setup, include=FALSE}
